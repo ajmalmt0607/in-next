@@ -24,6 +24,9 @@ import Search from "./Search";
 import Notifications from "./Notifications";
 import CreatePost from "./CreatePost";
 import ProfileLink from "./ProfileLink";
+import Dashboard from "./DashboardLink";
+import Explore from "./Explore";
+import Reels from "./Reels";
 
 const SidebarItems = ({ isMobile }) => {
 	return (
@@ -37,6 +40,9 @@ const SidebarItems = ({ isMobile }) => {
 			<Notifications isMobile={isMobile} />
 			<CreatePost isMobile={isMobile} />
 			<ProfileLink isMobile={isMobile} />
+			<Dashboard isMobile={isMobile} />
+			<Explore isMobile={isMobile} />
+			<Reels isMobile={isMobile} />
 		</div>
 	);
 };

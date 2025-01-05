@@ -31,9 +31,9 @@ const FeedPost = ({ post }) => {
 	const { userProfile } = useGetUserProfileById(post.createdBy);
 
 	return (
-		<div className="bg-[#121212] rounded-lg border border-gray-800">
+		<div className="">
 			<PostHeader post={post} creatorProfile={userProfile} />
-			<div className=" aspect-square">
+			<div className=" aspect-square rounded-lg overflow-hidden border border-gray-800">
 				<img
 					src={post.imageURL}
 					alt="Post"

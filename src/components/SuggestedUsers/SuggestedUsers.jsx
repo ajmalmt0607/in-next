@@ -90,13 +90,9 @@ const SuggestedUsers = () => {
 			))}
 
 			<div className="text-xs text-gray-500 mt-5 self-start">
-				© 2023 Built By{" "}
-				<Link
-					href="https://www.youtube.com/@asaprogrammer_"
-					target="_blank"
-					className="text-blue-500 text-sm"
-				>
-					As a Programmer
+				© 2025{" "}
+				<Link href={"/"} className=" text-xs uppercase">
+					Instagram from Meta
 				</Link>
 			</div>
 		</div>

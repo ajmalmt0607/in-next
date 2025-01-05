@@ -94,6 +94,10 @@ const Signup = () => {
 	const [showPassword, setShowPassword] = useState(false);
 	const { loading, error, signup } = UseSignUpWithEmailAndPassword();
 
+	const handleSignup = () => {
+		signup(inputs);
+	};
+
 	return (
 		<div className="space-y-4">
 			<input
@@ -182,7 +186,7 @@ const Signup = () => {
 			)}
 
 			<button
-				onClick={() => signup(inputs)}
+				onClick={handleSignup}
 				disabled={loading}
 				className="w-full bg-[#0095F6] text-white rounded-lg py-3 text-sm font-semibold hover:bg-[#1877F2] transition duration-200 disabled:opacity-50"
 			>

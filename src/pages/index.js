@@ -58,7 +58,7 @@ const HomePage = () => {
 
 	return (
 		<PageLayouts>
-			<div className="flex justify-center w-full gap-20 px-4 lg:px-10">
+			<div className="flex justify-center w-full gap-20 lg:px-10">
 				{/* Main feed section */}
 				<div className="flex-grow max-w-[630px]">
 					<div className="flex flex-col items-center">
@@ -69,7 +69,7 @@ const HomePage = () => {
 
 				{/* Sidebar with suggested users */}
 				<div className="hidden lg:block w-[320px] flex-shrink-0 pt-4">
-					<div className="fixed w-[320px]">
+					<div className=" w-[320px]">
 						<SuggestedUsers />
 					</div>
 				</div>

@@ -190,40 +190,40 @@ const CreatePost = ({ isMobile }) => {
 		}
 	};
 
-	if (isMobile) {
-		return (
-			<button
-				onClick={() => setIsOpen(true)}
-				className="flex flex-col items-center gap-1 text-gray-500 hover:text-white"
-			>
-				<PlusSquareIcon className="h-6 w-6" />
-			</button>
-		);
-	}
-
 	return (
 		<>
-			<div className="relative group">
+			{isMobile ? (
 				<button
-					className="flex items-center gap-4 hover:bg-gray-800 rounded-lg p-3 my-[2px] w-full md:justify-start justify-center"
 					onClick={() => setIsOpen(true)}
+					className="flex flex-col items-center gap-1 text-white hover:text-white"
 				>
-					<PlusSquareIcon />
-					<span className="xl:block md:hidden text-base">Create</span>
+					<PlusSquareIcon className="h-6 w-6" />
 				</button>
-			</div>
+			) : (
+				<div className="relative group">
+					<button
+						className="flex items-center gap-4 hover:bg-gray-800 rounded-lg p-3 my-[2px] w-full md:justify-start justify-center"
+						onClick={() => setIsOpen(true)}
+					>
+						<PlusSquareIcon />
+						<span className="xl:block md:hidden text-base">Create</span>
+					</button>
+				</div>
+			)}
 
-			<PostModal
-				isOpen={isOpen}
-				onClose={() => setIsOpen(false)}
-				caption={caption}
-				setCaption={setCaption}
-				selectedFile={selectedFile}
-				setSelectedFile={setSelectedFile}
-				handleImageChange={handleImageChange}
-				handlePostCreation={handlePostCreation}
-				isLoading={isLoading}
-			/>
+			{isOpen && (
+				<PostModal
+					isOpen={isOpen}
+					onClose={() => setIsOpen(false)}
+					caption={caption}
+					setCaption={setCaption}
+					selectedFile={selectedFile}
+					setSelectedFile={setSelectedFile}
+					handleImageChange={handleImageChange}
+					handlePostCreation={handlePostCreation}
+					isLoading={isLoading}
+				/>
+			)}
 		</>
 	);
 };

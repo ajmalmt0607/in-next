@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useRouter } from "next/router";
 import { MoreHorizontal, Settings } from "lucide-react";
 import ProfileHeader from "../../components/Profile/ProfileHeader";
@@ -12,6 +13,9 @@ export default function ProfilePage() {
 	const router = useRouter();
 	const { username } = router.query;
 	const { isLoading, userProfile } = useGetUserProfileByUsername(username);
+
+	// State to manage the selected tab
+	const [activeTab, setActiveTab] = useState("posts");
 
 	if (!isLoading && !userProfile) {
 		return (
@@ -48,9 +52,9 @@ export default function ProfilePage() {
 					{!isLoading && userProfile && <ProfileHeader user={userProfile} />}
 					{isLoading && <ProfileHeaderSkeleton />}
 
-					<div className="mt-8 border-t border-gray-800">
-						<ProfileTabs />
-						<ProfilePosts />
+					<div className="mt-8 border-t border-gray-800 h-screen">
+						<ProfileTabs activeTab={activeTab} setActiveTab={setActiveTab} />
+						<ProfilePosts activeTab={activeTab} />
 					</div>
 				</div>
 			</div>

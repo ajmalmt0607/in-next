@@ -82,7 +82,7 @@ const PageLayouts = ({ children }) => {
 	const canRenderSidebar = pathname !== "/auth";
 
 	return (
-		<div className="min-h-screen bg-black text-white">
+		<div className="min-h-screen text-white">
 			<div className="flex">
 				{/* Fixed sidebar */}
 				{canRenderSidebar && (
@@ -95,7 +95,7 @@ const PageLayouts = ({ children }) => {
 				<main
 					className={`flex-grow ${
 						canRenderSidebar ? "ml-[245px]" : ""
-					} max-w-[1000px] mx-auto`}
+					} max-w-[1000px] min-h-screen mx-auto`}
 				>
 					{children}
 				</main>

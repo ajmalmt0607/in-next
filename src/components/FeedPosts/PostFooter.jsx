@@ -118,7 +118,7 @@ const PostFooter = ({ post, creatorProfile }) => {
 	};
 
 	return (
-		<div className="p-3">
+		<div className="py-3">
 			{/* Action Buttons */}
 			<div className="flex items-center justify-between mb-2">
 				<div className="flex items-center gap-4">

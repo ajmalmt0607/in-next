@@ -1,34 +1,31 @@
+"use client";
+
 import React from "react";
-import { Bell } from "lucide-react";
+import { Film } from "lucide-react"; // Icon for Reels
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const Notifications = ({ isMobile }) => {
+const Reels = ({ isMobile }) => {
 	const pathname = usePathname();
-	const isActive = pathname === "/notifications";
+	const isActive = pathname === "/";
 
-	if (isMobile) {
-		return (
-			<Link href="/" className="flex flex-col items-center gap-1 text-white">
-				<Bell className="h-6 w-6" />
-			</Link>
-		);
-	}
+	// Hide the Reels item if isMobile is true
+	if (isMobile) return null;
 
 	return (
 		<Link
-			href="/notifications"
+			href="/"
 			className={`group relative flex items-center gap-4 rounded-lg p-3 my-[2px] text-sm font-medium transition-colors hover:bg-gray-900 ${
 				isActive ? "font-bold text-white" : "text-white hover:text-white"
 			}`}
 		>
-			<Bell className="h-6 w-6" />
-			<span className="xl:block md:hidden text-base">Notifications</span>
+			<Film className="h-6 w-6 text-white" />
+			<span className="xl:block md:hidden text-base">Reels</span>
 			<span className="absolute left-full ml-2 hidden rounded-md bg-gray-900 px-2 py-1 text-xs text-white group-hover:block lg:hidden">
-				Notifications
+				Reels
 			</span>
 		</Link>
 	);
 };
 
-export default Notifications;
+export default Reels;

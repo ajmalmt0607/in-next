@@ -45,7 +45,7 @@ const FeedPosts = () => {
 	const { isLoading, posts } = useGetFeedPosts();
 
 	return (
-		<div className="flex flex-col w-[468px] mx-10 gap-4">
+		<div className="flex flex-col w-[468px] mx-4 gap-4">
 			{isLoading &&
 				[0, 1, 2].map((_, idx) => (
 					<div key={idx} className="bg-[#121212] w-[468px] rounded-lg">

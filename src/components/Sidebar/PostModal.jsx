@@ -18,8 +18,8 @@ const PostModal = ({
 	if (!isOpen) return null;
 
 	return (
-		<div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-			<div className="bg-gray-900 border border-gray-800 rounded-lg w-full max-w-[90%] md:max-w-xl overflow-auto">
+		<div className="fixed inset-0 top-28  flex items-center justify-center z-50">
+			<div className="bg-black border border-gray-800 rounded-lg w-full max-w-[90%] md:max-w-xl overflow-auto">
 				<div className="flex justify-between items-center p-4 border-b border-gray-800">
 					<h2 className="text-xl font-semibold">Create Post</h2>
 					<button onClick={onClose} className="text-gray-500 hover:text-white">

@@ -7,11 +7,8 @@ import { Smile, X, MoreHorizontal } from "lucide-react";
 import useGetUserProfileById from "@/hooks/useGetUserProfileById";
 import Link from "next/link";
 
-// Replace 'fi' with the appropriate icon set
-// Replace with your icon library
-
 const CommentsModal = ({ isOpen, onClose, post }) => {
-	const { handlePostComment, isCommenting } = usePostComment();
+	const { handlePostComment } = usePostComment();
 	const { userProfile } = useGetUserProfileById(post.createdBy);
 	const [comment, setComment] = useState("");
 	const modalRef = useRef(null);
@@ -49,19 +46,20 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
 			>
 				<div
 					ref={modalRef}
-					className="bg-black rounded-xl w-[90vw] max-w-4xl h-[90vh] flex relative"
+					className="bg-black rounded-xl w-[90vw] max-w-4xl h-[90vh] flex flex-col xs:flex-row relative"
 				>
-					{/* Left: Post Image */}
-					<div className="w-[55%] bg-black flex items-center">
+					{/* Post Image */}
+					<div className="w-full xs:w-[55%] bg-black flex items-center justify-center">
 						<img
 							src={post.imageURL}
 							alt="Post content"
-							className="w-full h-full object-contain"
+							className="w-full h-full max-h-[40vh] xs:max-h-full object-contain"
 						/>
 					</div>
 
-					{/* Right: Comments */}
+					{/* Comments Section */}
 					<div className="flex-1 flex flex-col">
+						{/* Header */}
 						<div className="p-4 border-b border-gray-500">
 							<div className="flex items-center justify-between">
 								<div className="flex items-center gap-3">
@@ -86,7 +84,7 @@ const CommentsModal = ({ isOpen, onClose, post }) => {
 
 						{/* Comments List */}
 						<div
-							className="flex-1 overflow-y-auto p-4"
+							className="flex-1 overflow-y-auto p-4 max-h-[40vh] xs:max-h-full"
 							ref={commentsContainerRef}
 						>
 							{post.comments.map((comment, idx) => (

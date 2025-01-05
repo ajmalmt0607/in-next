@@ -172,12 +172,47 @@ export default function ProfileHeader({ user }) {
 
 			{/* Story Highlights */}
 			<div className="flex gap-4 overflow-x-auto pb-4">
-				{[1, 2, 3, 4].map((_, i) => (
-					<div key={i} className="flex flex-col items-center gap-1">
+				{[
+					{
+						id: 1,
+						imageURL:
+							"https://images.pexels.com/photos/29632553/pexels-photo-29632553/free-photo-of-woman-on-rooftop-overlooks-sagrada-familia.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+						label: "Travel",
+					},
+					{
+						id: 2,
+						imageURL:
+							"https://images.pexels.com/photos/28087028/pexels-photo-28087028/free-photo-of-cup-of-coffee-and-cake-by-the-window.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+						label: "Food",
+					},
+					{
+						id: 3,
+						imageURL:
+							"https://images.pexels.com/photos/27591919/pexels-photo-27591919/free-photo-of-a-man-sitting-on-a-bench-outside-of-a-building.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+						label: "Friends",
+					},
+					{
+						id: 4,
+						imageURL:
+							"https://images.pexels.com/photos/29985415/pexels-photo-29985415/free-photo-of-silhouetted-woman-walking-in-darkened-urban-tunnel.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+						label: "Work",
+					},
+					{
+						id: 5,
+						imageURL:
+							"https://images.pexels.com/photos/29972357/pexels-photo-29972357/free-photo-of-thoughtful-woman-holding-coffee-by-window.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+						label: "Love",
+					},
+				].map((story) => (
+					<div key={story.id} className="flex flex-col items-center gap-1">
 						<div className="w-16 h-16 rounded-full border-2 border-gray-700 flex items-center justify-center">
-							<div className="w-14 h-14 bg-gray-800 rounded-full"></div>
+							<img
+								src={story.imageURL}
+								alt={story.label}
+								className="w-14 h-14 rounded-full object-cover"
+							/>
 						</div>
-						<span className="text-xs text-gray-400">Highlights</span>
+						<span className="text-xs text-gray-400">{story.label}</span>
 					</div>
 				))}
 			</div>

@@ -10,11 +10,14 @@ import {
 } from "firebase/firestore";
 import useAuthStore from "../store/authStore";
 import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const UseSignUpWithEmailAndPassword = () => {
 	const [createUserWithEmailAndPassword, user, loading, error] =
 		useCreateUserWithEmailAndPassword(auth);
 	const loginUser = useAuthStore((state) => state.login);
+
+	const router = useRouter();
 
 	const signup = async (inputs) => {
 		if (
@@ -23,18 +26,16 @@ const UseSignUpWithEmailAndPassword = () => {
 			!inputs.username ||
 			!inputs.fullName
 		) {
-			toast.error("Error", "please fill all the fields", "error");
+			toast.error("Please fill in all fields.");
 			return;
 		}
 
-		//johndoe@gmail.com
 		const usersRef = collection(firestore, "users");
-
 		const q = query(usersRef, where("username", "==", inputs.username));
 		const querySnapshot = await getDocs(q);
 
 		if (!querySnapshot.empty) {
-			toast.error("Error", "Username already exists", "error");
+			toast.error("Username already exists.");
 			return;
 		}
 
@@ -43,10 +44,6 @@ const UseSignUpWithEmailAndPassword = () => {
 				inputs.email,
 				inputs.password
 			);
-			if (!newUser && error) {
-				toast.error("Error", error.message, "error");
-				return;
-			}
 			if (newUser) {
 				const userDoc = {
 					uid: newUser.user.uid,
@@ -62,10 +59,10 @@ const UseSignUpWithEmailAndPassword = () => {
 				};
 				await setDoc(doc(firestore, "users", newUser.user.uid), userDoc);
 				localStorage.setItem("user-info", JSON.stringify(userDoc));
-				loginUser(userDoc);
+				router.push("/");
 			}
 		} catch (error) {
-			toast.error("Error", error.message, "error");
+			toast.error(error.message);
 		}
 	};
 

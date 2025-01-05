@@ -40,12 +40,64 @@
 "use client";
 
 import { Heart, MessageCircle } from "lucide-react";
+import { useState, useEffect } from "react";
 import useGetUserPosts from "../../hooks/useGetUserPosts";
 
-export default function ProfilePosts() {
-	const { isLoading, posts } = useGetUserPosts();
+export default function ProfilePosts({ activeTab }) {
+	const { isLoading: isPostsLoading, posts } = useGetUserPosts();
+	const [filteredPosts, setFilteredPosts] = useState([]);
+	const [isLoading, setIsLoading] = useState(true);
 
-	if (!isLoading && posts.length === 0) {
+	useEffect(() => {
+		setIsLoading(true);
+
+		if (activeTab === "posts") {
+			setFilteredPosts(posts);
+		} else if (activeTab === "saved") {
+			// Simulate fetching saved posts (replace with actual API call)
+			setFilteredPosts([
+				{
+					id: 1,
+					imageURL:
+						"https://images.pexels.com/photos/27244375/pexels-photo-27244375/free-photo-of-car-by-maelifell-on-iceland.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+				{
+					id: 2,
+					imageURL:
+						"https://images.pexels.com/photos/29890824/pexels-photo-29890824/free-photo-of-lush-green-forest-pathway-in-serene-landscape.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+				{
+					id: 3,
+					imageURL:
+						"https://images.pexels.com/photos/29935806/pexels-photo-29935806/free-photo-of-charming-cottage-in-sunlit-forest.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+			]);
+		} else if (activeTab === "tagged") {
+			// Simulate fetching tagged posts (replace with actual API call)
+			setFilteredPosts([
+				{
+					id: 1,
+					imageURL:
+						"https://images.pexels.com/photos/29983242/pexels-photo-29983242/free-photo-of-charming-european-robin-amidst-lush-greenery.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+				{
+					id: 2,
+					imageURL:
+						"https://images.pexels.com/photos/29827505/pexels-photo-29827505/free-photo-of-aerial-landscape-view-in-the-philippines.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+				{
+					id: 3,
+					imageURL:
+						"https://images.pexels.com/photos/29748951/pexels-photo-29748951/free-photo-of-street-vendor-with-fruit-bicycle-in-vietnam.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+				},
+			]);
+		}
+
+		// Simulate delay for loading state
+		setTimeout(() => setIsLoading(false), 500);
+	}, [activeTab, posts]);
+
+	if (!isLoading && filteredPosts.length === 0) {
 		return (
 			<div className="flex flex-col items-center justify-center py-20">
 				<p className="text-xl font-semibold mb-2">No Posts Yet</p>
@@ -58,32 +110,20 @@ export default function ProfilePosts() {
 
 	return (
 		<div className="grid grid-cols-3 gap-1">
-			{isLoading
+			{isLoading || isPostsLoading
 				? // Loading skeletons
 				  [...Array(9)].map((_, i) => (
 						<div key={i} className="aspect-square bg-gray-800 animate-pulse" />
 				  ))
-				: posts.map((post) => <PostCard key={post.id} post={post} />)}
+				: filteredPosts.map((post) => <PostCard key={post.id} post={post} />)}
 		</div>
 	);
 }
 
 function PostCard({ post }) {
 	return (
-		<div className="relative aspect-square group cursor-pointer">
+		<div className="aspect-square group cursor-pointer">
 			<img src={post.imageURL} alt="" className="w-full h-full object-cover" />
-			<div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-				<div className="flex gap-6 text-white">
-					<div className="flex items-center gap-2">
-						<Heart className="w-6 h-6 fill-white" />
-						<span className="font-semibold">{post.likes.length}</span>
-					</div>
-					<div className="flex items-center gap-2">
-						<MessageCircle className="w-6 h-6 fill-white" />
-						<span className="font-semibold">{post.comments.length}</span>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 }

@@ -13,9 +13,7 @@ const ProfileLink = ({ isMobile }) => {
 		return (
 			<Link
 				href={`/${authUser?.username}`}
-				className={`flex flex-col items-center gap-1 ${
-					isActive ? "text-white" : "text-gray-500"
-				}`}
+				className="flex flex-col items-center gap-1 text-white"
 			>
 				<User className="h-6 w-6" />
 			</Link>

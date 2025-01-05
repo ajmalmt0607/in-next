@@ -63,7 +63,7 @@ const PostHeader = ({ post, creatorProfile }) => {
 	);
 
 	return (
-		<div className="flex items-center justify-between p-3">
+		<div className="flex items-center justify-between py-3 px-1">
 			<div className="flex items-center gap-3">
 				{creatorProfile ? (
 					<Link href={`/${creatorProfile.username}`}>
