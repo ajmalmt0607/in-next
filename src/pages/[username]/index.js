@@ -35,19 +35,6 @@ export default function ProfilePage() {
 		<PageLayouts>
 			<div className="min-h-screen bg-black text-white">
 				<div className="max-w-4xl mx-auto px-4 py-8">
-					{/* Header Actions */}
-					<div className="flex items-center justify-between mb-8">
-						<h1 className="text-xl font-semibold">ajmal_mt_</h1>
-						<div className="flex items-center gap-4">
-							<button className="p-2 hover:bg-gray-800 rounded-full">
-								<Settings className="w-6 h-6" />
-							</button>
-							<button className="p-2 hover:bg-gray-800 rounded-full">
-								<MoreHorizontal className="w-6 h-6" />
-							</button>
-						</div>
-					</div>
-
 					{/* Profile Content */}
 					{!isLoading && userProfile && <ProfileHeader user={userProfile} />}
 					{isLoading && <ProfileHeaderSkeleton />}
